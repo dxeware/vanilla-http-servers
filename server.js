@@ -1,6 +1,6 @@
+"use strict";
+
 var http = require('http');
-var fs = require('fs');
-var util = require('util');
 
 function sendResponse(res, status, string) {
   res.writeHead(status, {
@@ -24,7 +24,6 @@ function processRoute(req, res) {
 
   } else if ( (req.url === '/greet') && (req.method === 'POST') ) {
 
-    console.log('received a POST');
     var body = '';
     req.on('data', function (chunk) {
       body += chunk.toString();

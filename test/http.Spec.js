@@ -6,8 +6,6 @@ var expect = require('chai').expect;
 
 chai.use(chaiHttp);
 
-require('./server.js');
-
 describe('HTTP servers', function() {
 
   it('should respond to request to /time with status code 200', function(done) {

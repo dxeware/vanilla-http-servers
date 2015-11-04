@@ -6,7 +6,8 @@ var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
 
 // Files we're concerned about
-var files = ['./*.js', '!./server.js', '!./gulpfile.js'];
+var files = ['./**/*.js', '!./node_modules/**'];
+var testFiles = ['./test/*.js'];
 
 // task to run jshint
 gulp.task('lint', function() {
@@ -17,7 +18,7 @@ gulp.task('lint', function() {
 
 // task to run our tests
 gulp.task('test', function() {
-  return gulp.src(files)
+  return gulp.src(testFiles)
     .pipe(mocha());
 });
 
