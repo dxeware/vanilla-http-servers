@@ -6,6 +6,8 @@ var expect = require('chai').expect;
 
 chai.use(chaiHttp);
 
+require('./server.js');
+
 describe('HTTP servers', function() {
 
   it('should respond to request to /time with status code 200', function(done) {
@@ -52,9 +54,10 @@ describe('HTTP servers', function() {
   it('server should send a greeting to the name in the POST request in JSON', function(done) {
 
     chai.request('localhost:3000')
-          .post('/greet/Martha')
+          .post('/greet/xyz')
+          .send({"name": "Martha"})
           .end(function (err, res) {
-            //expect(res.text).to.equal('How are you, Sebastian?');
+            expect(res.text).to.equal('How are you, Martha?');
             done();
           });
 
