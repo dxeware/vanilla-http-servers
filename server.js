@@ -14,7 +14,6 @@ function sendResponse(res, status, string) {
 
 function processRoute(req, res) {
   var writeString = '';
-  //var greet = req.url.match(/^\/greet\/(.+)/);
 
   if (req.url === '/time') {
     // Get system time and send back in seconds
@@ -38,28 +37,19 @@ function processRoute(req, res) {
 
     var match = req.url.match(/^\/greet\/(.+)/);
 
-    //console.log("match = " + match[0]);
-    if (match !== null) {
-      if (req.method === 'GET') {
+    if ( (match !== null) && (req.method === 'GET') ) {
         writeString = 'How are you, ' + match[1] + '?';
         sendResponse(res, 200, writeString);
-      }
     } else {
       sendResponse(res, 404, writeString);
     }
   }
 
-  // Return the string to be send back
-  // If route was not processed successfully,
-  // writeStr = '' is returned.
-  //return writeString;
 }
 
 var server = http.createServer(function (req, res) {
   var writeStr = '';
-
   writeStr = processRoute(req, res, sendResponse);
-
 });
 
 server.listen(3000, function () {
